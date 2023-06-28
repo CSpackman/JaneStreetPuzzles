@@ -8,6 +8,9 @@ answer = np.array([[0,4,4,4,0],[5,5,0,5,0],[3,0,0,5,4],[1,2,3,0,0],[2,0,3,5,0]])
 xGCD = [0,1,1,5,4]
 yGCD = [0,5,3,123,1]
 
+xGCD9 = [5,1,6,1,8,1,22,7,8]
+yGCD9 = [55,1,6,1,24,3,6,7,2]
+
 def concatinator(array):
     temp = ""
     output = []
@@ -60,7 +63,7 @@ def firstValids(xGCD,yGCD):
 
 # valids = firstValids(xGCD,yGCD)
 
-def generateFirstRowColPair(xGCD,yGD,size):
+def generateFirstRowColPair(xGCD,yGCD,size):
     firstRowValids = set()
     firstColValids = set()
     lastRowValids = set()
@@ -232,15 +235,117 @@ def insert_at(big_arr, pos, to_insert_arr):
     big_arr[x1:x2, y1:y2] = to_insert_arr
 
     return big_arr
-# 
-valids = generateFirstRowColPair(xGCD,yGCD,5)
-print(valids)
-empty = np.zeros((5,5), dtype= int)
-empty[0]=[0,4,4,4,0]
-empty[1]=[0,0,0,0,0]
-empty[2]=[0,0,0,0,4]
-empty[3]=[0,0,0,0,0]
-empty[4]=[0,0,0,0,0]
+def solve(xGCD,yGCD,size):
+    valids = generateFirstRowColPair(xGCD,yGCD,size)
+    for one in valids:
+        i = nextSetOfValids(xGCD,yGCD,one)
+        # i =  insert_at(one,(1,0),i[0])
+        for two in i:
+            x = insert_at(one,(1,0),two)
+            j = nextSetOfValids(xGCD,yGCD,x)
+            for three in j:
+                h = nextSetOfValids(xGCD,yGCD,three)
+                return  h
+            # return len(j)
+        # insert_at(two,(1,0),j[0])
+
+            #   for three in j:
+            #         h = nextSetOfValids(xGCD,yGCD,three)
+            #         return insert_at(three,(2,0),h)
+        
+print(solve(xGCD,yGCD,5))
+# noDuplicates = set()
+# for arr in valids:
+#     noDuplicates.add(tuple(arr.flatten()))
+# print("nine")
+# print(len(noDuplicates))
+
+# empty1 = np.zeros((5,5), dtype= int)
+# empty1[0]=[0,4,4,4,0]
+# empty1[1]=[0,0,0,0,0]
+# empty1[2]=[0,0,0,0,4]
+# empty1[3]=[0,0,0,0,0]
+# empty1[4]=[0,0,0,0,0]
+
+# x = nextSetOfValids(xGCD,yGCD,empty1)
+# # print(x)
+# noDuplicates = set()
+# for arr in x:
+#     noDuplicates.add(tuple(arr.flatten()))
+
+# print(len(noDuplicates))
+
+# empty2 = np.zeros((5,5), dtype= int)
+# empty2[0]=[0,4,4,4,0]
+# empty2[1]=[5,5,0,5,0]
+# empty2[2]=[0,0,0,5,4]
+# empty2[3]=[0,0,0,0,0]
+# empty2[4]=[0,0,0,5,0]
+# x = nextSetOfValids(xGCD,yGCD,empty2)
+# # print(x)
+# noDuplicates = set()
+# for arr in x:
+#     noDuplicates.add(tuple(arr.flatten()))
+
+# print(len(noDuplicates))
+
+# empty3 = np.zeros((5,5), dtype= int)
+# empty3[0]=[0,4,4,4,0]
+# empty3[1]=[5,5,0,5,0]
+# empty3[2]=[3,0,0,5,4]
+# empty3[3]=[0,0,3,0,0]
+# empty3[4]=[0,0,3,5,0]
+# x = nextSetOfValids(xGCD,yGCD,empty3)
+# # print(x)
+# noDuplicates = set()
+# for arr in x:
+#     noDuplicates.add(tuple(arr.flatten()))
+
+# print(len(noDuplicates))
+
+# i = np.zeros((2,2), dtype= int)
+
+# i[0]=[0,0]
+# i[1]=[0,0]
+# noDuplicates = set()
+# for arr in x:
+#     noDuplicates.add(tuple(arr.flatten()))
+
+# print(len(noDuplicates))
+
+# empty4 = np.zeros((5,5), dtype= int)
+# empty4[0]=[0,4,4,4,0]
+# empty4[1]=[5,5,0,5,0]
+# empty4[2]=[3,0,0,5,4]
+# empty4[3]=[0,2,3,0,0]
+# empty4[4]=[2,0,3,5,0]
+# x = nextSetOfValids(xGCD,yGCD,empty4)
+# noDuplicates = set()
+# for arr in x:
+#     noDuplicates.add(tuple(arr.flatten()))
+# print(len(noDuplicates))
+
+# empty1 = np.zeros((5,5), dtype= int)
+# empty1[0]=[0,4,4,4,0]
+# empty1[1]=[0,0,0,0,0]
+# empty1[2]=[0,0,0,0,4]
+# empty1[3]=[0,0,0,0,0]
+# empty1[4]=[0,0,0,0,0]
+
+# empty2 = np.zeros((4,4), dtype= int)
+# empty2[0]=[5,5,0,5]
+# empty2[1]=[0,0,0,5]
+# empty2[2]=[0,0,0,0]
+# empty2[3]=[0,0,0,5]
+
+# empty3 = np.zeros((3,3), dtype= int)
+# empty3[0]=[3,0,0]
+# empty3[1]=[0,0,3]
+# empty3[2]=[0,0,3]
+
+# x= insert_at(empty1,(1,0),empty2)
+# y= insert_at(x,(2,0),empty3)
+# print(y)
 
 # def solvePuzzle(xGCD,yGCD, current, traversing=[]):
 #     traversing2 = nextSetOfValids(xGCD,yGCD,current)
