@@ -235,17 +235,26 @@ def insert_at(big_arr, pos, to_insert_arr):
     big_arr[x1:x2, y1:y2] = to_insert_arr
 
     return big_arr
-def solve(xGCD,yGCD,size):
-    valids = generateFirstRowColPair(xGCD,yGCD,size)
-    for one in valids:
-        i = nextSetOfValids(xGCD,yGCD,one)
-        # i =  insert_at(one,(1,0),i[0])
-        for two in i:
-            x = insert_at(one,(1,0),two)
-            j = nextSetOfValids(xGCD,yGCD,x)
-            for three in j:
-                h = nextSetOfValids(xGCD,yGCD,three)
-                return  h
+
+valids = generateFirstRowColPair(xGCD,yGCD,5)
+def solve(xGCD,yGCD,currentValid,lastValid,count=0):
+    x= nextSetOfValids(xGCD,yGCD,currentValid)
+# currentValid = insert_at(lastValid,(( count+=1 ),0),x.pop())
+    #  return solve(xGCD,yGCD,currentValid,lastValid,(count+=1))  
+return "hi "
+    print(x= count + 1)
+    
+# def solve(xGCD,yGCD,size):
+#     valids = generateFirstRowColPair(xGCD,yGCD,size)
+#     for one in valids:
+#         i = nextSetOfValids(xGCD,yGCD,one)
+#         # i =  insert_at(one,(1,0),i[0])
+#         for two in i:
+#             x = insert_at(one,(1,0),two)
+#             j = nextSetOfValids(xGCD,yGCD,x)
+#             for three in j:
+#                 h = nextSetOfValids(xGCD,yGCD,three)
+                # return  h
             # return len(j)
         # insert_at(two,(1,0),j[0])
 
@@ -253,7 +262,7 @@ def solve(xGCD,yGCD,size):
             #         h = nextSetOfValids(xGCD,yGCD,three)
             #         return insert_at(three,(2,0),h)
         
-print(solve(xGCD,yGCD,5))
+print(solve(xGCD,yGCD,5,=))
 # noDuplicates = set()
 # for arr in valids:
 #     noDuplicates.add(tuple(arr.flatten()))
@@ -448,3 +457,6 @@ print(solve(xGCD,yGCD,5))
 # for i in y:
 #     if(np.array_equiv(i,empty)):
 #            print("yay")
+
+
+
