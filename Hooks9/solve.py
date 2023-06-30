@@ -236,14 +236,34 @@ def insert_at(big_arr, pos, to_insert_arr):
 
     return big_arr
 
-valids = generateFirstRowColPair(xGCD,yGCD,5)
-def solve(xGCD,yGCD,currentValid,lastValid,count=0):
+def solve(xGCD,yGCD,currentValid,count=0):
     x= nextSetOfValids(xGCD,yGCD,currentValid)
-# currentValid = insert_at(lastValid,(( count+=1 ),0),x.pop())
-    #  return solve(xGCD,yGCD,currentValid,lastValid,(count+=1))  
-return "hi "
-    print(x= count + 1)
-    
+    if(len(x)==0):
+        return currentValid
+    print(currentValid)
+    currentValid = insert_at(currentValid,(count+1,0),x.pop())
+    # how do we know where to insert. At which row and col
+    temp = count+1
+    return solve(xGCD,yGCD,currentValid,(temp))  
+
+
+
+stage1 = np.zeros((5,5), dtype= int)
+stage1[0]=[0,4,4,4,0]
+stage1[1]=[0,0,0,0,0]
+stage1[2]=[0,0,0,0,4]
+stage1[3]=[0,0,0,0,0]
+stage1[4]=[0,0,0,0,0]
+
+valids = generateFirstRowColPair(xGCD,yGCD,5)
+poss = []
+for i in valids:
+    print(i)
+    poss.append(solve(xGCD,yGCD,i))
+
+# x= solve(xGCD,yGCD,stage1)
+# print(x)
+
 # def solve(xGCD,yGCD,size):
 #     valids = generateFirstRowColPair(xGCD,yGCD,size)
 #     for one in valids:
@@ -262,7 +282,6 @@ return "hi "
             #         h = nextSetOfValids(xGCD,yGCD,three)
             #         return insert_at(three,(2,0),h)
         
-print(solve(xGCD,yGCD,5,=))
 # noDuplicates = set()
 # for arr in valids:
 #     noDuplicates.add(tuple(arr.flatten()))
