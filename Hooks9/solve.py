@@ -224,6 +224,8 @@ def nextSetOfValids(xGCD,yGCD,lastValid):
     return valids
 
 def insert_at(big_arr, pos, to_insert_arr):
+    size = len(big_arr[0])
+    
     x1 = pos[0]
     y1 = pos[1]
     x2 = x1 + to_insert_arr.shape[0]
@@ -255,12 +257,38 @@ stage1[2]=[0,0,0,0,4]
 stage1[3]=[0,0,0,0,0]
 stage1[4]=[0,0,0,0,0]
 
-valids = generateFirstRowColPair(xGCD,yGCD,5)
-poss = []
-for i in valids:
-    print(i)
-    poss.append(solve(xGCD,yGCD,i))
+s1 = np.zeros((5,5), dtype= int)
+s1[0]=[4,0,0,0,0]
+s1[1]=[4,0,0,0,0]
+s1[2]=[4,0,0,0,0]
+s1[3]=[0,0,0,0,0]
+s1[4]=[4,0,4,0,0]
 
+stage2 = np.zeros((4,4), dtype= int)
+stage2[0]=[5,5,0,5]
+stage2[1]=[0,0,0,5]
+stage2[2]=[0,0,0,0]
+stage2[3]=[0,0,0,5]
+
+valids = generateFirstRowColPair(xGCD,yGCD,5)
+# poss = []
+# for i in valids:
+#     print(i)
+#     poss.append(solve(xGCD,yGCD,i))
+x=insert_at(s1,(0,1),stage2)
+stage3 = np.zeros((3,3), dtype= int)
+stage3[0]=[3,3,0]
+stage3[1]=[0,0,3]
+stage3[2]=[0,0,3]
+x1=insert_at(x,(1,1),stage3)
+print(x)
+print(x1)
+
+stage4 = np.zeros((2,2), dtype= int)
+stage4[0]=[2,2]
+stage4[1]=[0,2]
+x2=insert_at(x,(2,1),stage4)
+print(x2)
 # x= solve(xGCD,yGCD,stage1)
 # print(x)
 
